@@ -53,7 +53,9 @@ const msg = await Message.create({
       }
     }
 
-    res.json(msg);
+    // res.json(msg);
+    const fullMsg = await msg.populate("sender", "_id name avatar");
+res.json(fullMsg);
 
   } catch (err) {
     res.status(500).json({ msg: err.message });
@@ -166,8 +168,11 @@ export const getChatMessages = async (req, res) => {
       chat: req.params.chatId,
       deletedFor: { $ne: req.user._id }
     })
-      .populate("sender", "name")
-      .sort({ createdAt: -1 });
+      // .populate("sender", "name")
+      // .sort({ createdAt: -1 });
+
+      .populate("sender", "_id name avatar")
+.sort({ createdAt: 1 })
 
     res.json(messages);
 
