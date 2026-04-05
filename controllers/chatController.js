@@ -128,6 +128,26 @@ export const exportChatText = async (req, res) => {
   }
 };
 
+
+// import Chat from "../models/Chat.js";
+
+// GET all groups for logged-in user
+export const getGroups = async (req, res) => {
+  try {
+    const groups = await Chat.find({
+      isGroupChat: true,
+      users: { $in: [req.user._id] },
+    })
+      .populate("users", "-password")
+      .populate("groupAdmin", "-password")
+      .sort({ updatedAt: -1 }); // latest first
+
+    res.json(groups);
+  } catch (err) {
+    res.status(500).json({ msg: err.message });
+  }
+};
+
 // // 📤 Export chat JSON
 // export const exportChat = async (req, res) => {
 //   try {

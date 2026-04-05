@@ -4,7 +4,8 @@ import {
   createGroup,
   pinChat,
   exportChat,
-  exportChatText
+  exportChatText,
+  getGroups
 } from "../controllers/chatController.js";
 
 import protect from "../middleware/authMiddleware.js";
@@ -13,6 +14,7 @@ const router = express.Router();
 
 router.post("/", protect, createChat);
 router.post("/group", protect, createGroup);
+router.get("/group", protect, getGroups);
 
 // 📌 Pin chat
 router.put("/pin/:id", protect, pinChat);
