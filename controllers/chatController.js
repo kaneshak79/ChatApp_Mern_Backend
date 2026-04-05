@@ -148,6 +148,54 @@ export const getGroups = async (req, res) => {
   }
 };
 
+// Delete group
+export const deleteGroup = async (req, res) => {
+  try {
+    const group = await Chat.findById(req.params.groupId);
+
+    if (!group) return res.status(404).json({ msg: "Group not found" });
+
+    // Only admin can delete
+    if (group.groupAdmin.toString() !== req.user._id.toString()) {
+      return res.status(403).json({ msg: "Only admin can delete group" });
+    }
+
+    await Chat.findByIdAndDelete(req.params.groupId);
+
+    res.json({ msg: "Group deleted ✅" });
+  } catch (err) {
+    res.status(500).json({ msg: err.message });
+  }
+};
+
+// Update group
+export const updateGroup = async (req, res) => {
+  try {
+    const { name, users } = req.body;
+    const group = await Chat.findById(req.params.groupId);
+
+    if (!group) return res.status(404).json({ msg: "Group not found" });
+
+    // Only admin can edit
+    if (group.groupAdmin.toString() !== req.user._id.toString()) {
+      return res.status(403).json({ msg: "Only admin can edit group" });
+    }
+
+    if (name) group.chatName = name;
+    if (users) group.users = [...users, group.groupAdmin]; // keep admin
+
+    await group.save();
+
+    const updatedGroup = await Chat.findById(group._id)
+      .populate("users", "-password")
+      .populate("groupAdmin", "-password");
+
+    res.json(updatedGroup);
+  } catch (err) {
+    res.status(500).json({ msg: err.message });
+  }
+};
+
 // // 📤 Export chat JSON
 // export const exportChat = async (req, res) => {
 //   try {
