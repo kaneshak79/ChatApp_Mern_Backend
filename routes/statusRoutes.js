@@ -5,7 +5,8 @@ import {
   createStatus,
   getStatuses,
   viewStatus,
-  deleteStatus
+  deleteStatus,
+  updateStatus
 } from "../controllers/statusController.js";
 
 const router = express.Router();
@@ -19,6 +20,8 @@ router.get("/", protect, getStatuses);
 // 👁️ View
 router.get("/:id", protect, viewStatus);
 
+//update
+router.patch("/:id", protect, updateStatus); // <-- ADD THIS
 // ❌ Delete
 router.delete("/:id", protect, deleteStatus);
 
