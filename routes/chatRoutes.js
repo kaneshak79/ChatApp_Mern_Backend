@@ -7,7 +7,8 @@ import {
   exportChatText,
   getGroups,
   deleteGroup,
-  updateGroup
+  updateGroup,
+  getGroupMembers
 } from "../controllers/chatController.js";
 
 import protect from "../middleware/authMiddleware.js";
@@ -19,6 +20,7 @@ router.post("/group", protect, createGroup);
 router.get("/group", protect, getGroups);
 router.delete("/group/:groupId", protect, deleteGroup);
 router.put("/group/:groupId", protect, updateGroup);
+router.get("/group/:id", protect, getGroupMembers); 
 
 // 📌 Pin chat
 router.put("/pin/:id", protect, pinChat);

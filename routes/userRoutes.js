@@ -4,7 +4,8 @@ import {
   blockUser,
   unblockUser,
   searchUsers,
-  searchChats
+  searchChats,
+  getUserDetails
 } from "../controllers/userController.js";
 
 import protect from "../middleware/authMiddleware.js";
@@ -21,5 +22,6 @@ router.put("/unblock/:id", protect, unblockUser);
 // 🔍 Search
 router.get("/search", protect, searchUsers);
 router.get("/search-chats", protect, searchChats);
+router.get("/:id", protect, getUserDetails); 
 
 export default router;

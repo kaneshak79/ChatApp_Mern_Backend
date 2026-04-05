@@ -196,6 +196,27 @@ export const updateGroup = async (req, res) => {
   }
 };
 
+// GET /api/chat/:id - Get group details including members
+// import Chat from "../models/Chat.js";
+
+export const getGroupMembers = async (req, res) => {
+  try {
+    const group = await Chat.findById(req.params.id)
+      .populate("users", "name email bio isOnline avatar") // fetch all member details
+      .populate("groupAdmin", "name email"); // optional: show admin info
+
+    if (!group) return res.status(404).json({ msg: "Group not found" });
+
+    // Only allow if it's a group chat
+    if (!group.isGroupChat) return res.status(400).json({ msg: "Not a group chat" });
+
+    res.json(group);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ msg: err.message });
+  }
+};
+
 // // 📤 Export chat JSON
 // export const exportChat = async (req, res) => {
 //   try {
