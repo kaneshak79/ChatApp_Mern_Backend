@@ -104,48 +104,77 @@ Client → Routes → Controllers → Models → Database
 backend/
 │
 ├── config/
+
 │ ├── db.js
+
 │ └── cloudinary.js
 │
 ├── controllers/
+
 │ ├── authController.js
+
 │ ├── userController.js
+
 │ ├── chatController.js
+
 │ ├── messageController.js
+
 │ ├── statusController.js
+
 │ ├── callController.js
+
 │ └── notificationController.js
 │
 ├── middleware/
+
 │ ├── authMiddleware.js
+
 │ └── upload.js
 │
 ├── models/
+
 │ ├── User.js
+
 │ ├── Chat.js
+
 │ ├── Message.js
+
 │ ├── Status.js
+
 │ ├── Notification.js
+
 │ └── Call.js
 │
 ├── routes/
+
 │ ├── authRoutes.js
+
 │ ├── userRoutes.js
+
 │ ├── chatRoutes.js
+
 │ ├── messageRoutes.js
+
 │ ├── statusRoutes.js
+
 │ ├── notificationRoutes.js
+
 │ ├── callRoutes.js
+
 │ └── uploadRoutes.js
 │
 ├── utils/
+
 │ └── createNotification.js
 │
 ├── uploads/
 │
 ├── socket.js
+
 ├── server.js
+
 ├── .env
+
 └── package.json
 
 
@@ -170,49 +199,68 @@ backend/
 ### 🔐 Auth
 
 POST /api/auth/register
+
 POST /api/auth/login
+
 POST /api/auth/forgot-password
+
 POST /api/auth/reset-password
 
 
 ### 👤 Users
 
 GET /api/user/search
+
 GET /api/user/:id
 
 
 ### 💬 Chat
 
 POST /api/chat
+
 GET /api/chat?userId=
+
 GET /api/chat/group/:id
+
 POST /api/chat/group
 
 
 ### ✉️ Messages
 
 POST /api/message/
+
 GET /api/message/:chatId
+
 PUT /api/message/edit/:id
+
 PUT /api/message/delete-me/:id
+
 PUT /api/message/delete-everyone/:id
+
 PUT /api/message/delivered/:id
+
 PUT /api/message/seen/:id
+
 POST /api/message/translate
+
 GET /api/message/unread/:chatId
 
 
 ### 📸 Status
 
 POST /api/status
+
 GET /api/status
+
 PUT /api/status/:id
+
 DELETE /api/status/:id
 
 
 ### 📞 Calls
 
 POST /api/call/audio
+
 POST /api/call/video
 
 
@@ -249,25 +297,24 @@ CLOUDINARY_API_SECRET=xxx
 ```bash
 npm install
 npm run dev
-📊 Database Flow
+
+## 📊 Database Flow
+
 User → Chats → Messages
      → Status
      → Notifications
-🚀 Highlights
+End-to-end encryption
+
+# 🚀 Highlights
+
 WhatsApp-like full backend system
 Supports both 1-on-1 and group chats
 Real-time architecture
 Media + translation support
 Clean modular design
 
-## 👨‍💻 Author
+# 👨‍💻 Author
 
 Kanesha K
-
-## ⭐ Future Improvements
-
-Typing indicators
-Message reactions
-End-to-end encryption
 
 ## 🏗️ Architecture
