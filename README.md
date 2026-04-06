@@ -103,12 +103,14 @@ Client → Routes → Controllers → Models → Database
 
 backend/
 │
+
 ├── config/
 
 │ ├── db.js
 
 │ └── cloudinary.js
 │
+
 ├── controllers/
 
 │ ├── authController.js
@@ -125,12 +127,14 @@ backend/
 
 │ └── notificationController.js
 │
+
 ├── middleware/
 
 │ ├── authMiddleware.js
 
 │ └── upload.js
 │
+
 ├── models/
 
 │ ├── User.js
@@ -145,6 +149,7 @@ backend/
 
 │ └── Call.js
 │
+
 ├── routes/
 
 │ ├── authRoutes.js
@@ -163,12 +168,15 @@ backend/
 
 │ └── uploadRoutes.js
 │
+
 ├── utils/
 
 │ └── createNotification.js
 │
+
 ├── uploads/
 │
+
 ├── socket.js
 
 ├── server.js
