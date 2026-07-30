@@ -43,6 +43,7 @@ const msg = await Message.create({
     await Chat.findByIdAndUpdate(chatId, {
       latestMessage: msg._id
     });
+    //without this chat may collapse give any mesage with this it gives latest message last msg like last msg how r u display
 
     const chat = await Chat.findById(chatId).populate("users");
 
